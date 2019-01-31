@@ -1,0 +1,271 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://2D Character Controller/scripts/2DCharacterController.gd" type="Script" id=1]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimationController/Alien.png" type="Texture" id=2]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Idle/p1_stand.png" type="Texture" id=3]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk01.png" type="Texture" id=4]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk02.png" type="Texture" id=5]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk03.png" type="Texture" id=6]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk04.png" type="Texture" id=7]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk05.png" type="Texture" id=8]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk06.png" type="Texture" id=9]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk07.png" type="Texture" id=10]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk08.png" type="Texture" id=11]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk09.png" type="Texture" id=12]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk10.png" type="Texture" id=13]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Walk/p1_walk11.png" type="Texture" id=14]
+[ext_resource path="res://2D Character Controller/gfx/Characters/AnimatedSprite/Jump/p1_jump.png" type="Texture" id=15]
+[ext_resource path="res://2D Character Controller/scripts/Screen_Controls.gd" type="Script" id=16]
+[ext_resource path="res://2D Character Controller/gfx/ScreenControls/button_left.png" type="Texture" id=17]
+[ext_resource path="res://2D Character Controller/gfx/ScreenControls/button_right.png" type="Texture" id=18]
+[ext_resource path="res://2D Character Controller/gfx/ScreenControls/button_jump.png" type="Texture" id=19]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "Hurt"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite/Alien:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSprite/Alien:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Idle"
+length = 0.1
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite/Alien:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "Jump"
+length = 0.1
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite/Alien:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+length = 0.4
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite/Alien:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="SpriteFrames" id=5]
+
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 34.4271, 46.3524 )
+
+[node name="Player" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+Animated_Sprite = false
+Right_Action = "ui_right"
+Left_Action = "ui_left"
+Jump_Action = "ui_up"
+Anim_Walk = "Walk"
+Anim_Idle = "Idle"
+Anim_Jump = "Jump"
+Anim_Hurt = "Hurt"
+Weight = 40
+Velocity = 500
+
+[node name="PlayerSprite" type="Node2D" parent="." index="0"]
+
+z_index = 1
+
+[node name="Alien" type="Sprite" parent="PlayerSprite" index="0"]
+
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+frame = 6
+_sections_unfolded = [ "Animation" ]
+
+[node name="AnimationController" type="AnimationPlayer" parent="." index="1"]
+
+root_node = NodePath("..")
+autoplay = "Idle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Hurt = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Jump = SubResource( 3 )
+anims/Walk = SubResource( 4 )
+blend_times = [  ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
+
+position = Vector2( 0, 3 )
+frames = SubResource( 5 )
+animation = "Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
+position = Vector2( 1, 1.87088 )
+scale = Vector2( 1, 0.991424 )
+shape = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+
+position = Vector2( -472.26, -252.353 )
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[node name="Screen_Controls" type="Control" parent="Camera2D" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 16 )
+
+[node name="Left" type="TouchScreenButton" parent="Camera2D/Screen_Controls" index="0"]
+
+position = Vector2( 12.4857, 329.832 )
+normal = ExtResource( 17 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = true
+action = "ui_left"
+visibility_mode = 0
+
+[node name="Right" type="TouchScreenButton" parent="Camera2D/Screen_Controls" index="1"]
+
+position = Vector2( 94.5057, 329.535 )
+normal = ExtResource( 18 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = true
+action = "ui_right"
+visibility_mode = 0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Jump" type="TouchScreenButton" parent="Camera2D/Screen_Controls" index="2"]
+
+position = Vector2( 594.718, 330.08 )
+normal = ExtResource( 19 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = true
+action = "ui_up"
+visibility_mode = 0
+_sections_unfolded = [ "Transform" ]
+
+
